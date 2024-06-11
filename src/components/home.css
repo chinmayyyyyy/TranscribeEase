@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.configure,
+.previewContent {
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.configure {
+    max-width: 400px;
+}
+
+.previewContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.preview-box {
+    background-color: black;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-text {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif; /* Default font */
+    font-size: 24px; /* Default font size */
+    text-align: center;
+    width: 100%; /* Adjust as needed */
+}
+
+input[type="file"],
+select,
+input[type="number"],
+input[type="color"] {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
