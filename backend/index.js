@@ -111,8 +111,8 @@ app.post('/process-video', upload.single('video'), async (req, res) => {
         }
 
         const outputFilePath = path.join(outputDir, `output_${Date.now()}.mp4`);
-        const ffmpegCommand = `${ffmpegPath} -i ${videoPath} -vf "subtitles=${srtFilePath}:force_style='FontName=${fontFamily},FontSize=${fontSize},PrimaryColour=${fontColor},Outline=${outline},OutlineColour=${outlineColor},Shadow=${shadow}'" ${outputFilePath}`;
-        
+        const ffmpegCommand = `${ffmpegPath} -i ${videoPath} -vf "subtitles=${srtFilePath}:force_style='Alpha=0,FadeIn,Alpha=1,FadeOut,FontName=${fontFamily},FontSize=${fontSize},PrimaryColour=${fontColor},Outline=${outline},OutlineColour=${outlineColor},Shadow=${shadow}'" ${outputFilePath}`;
+
         exec(ffmpegCommand, (error, stdout, stderr) => {
             if (error) {
                 console.error('Error processing video:', error);
@@ -202,7 +202,6 @@ app.post('/process-video-dual-speaker', upload.single('video'), async (req, res)
                 const outline = req.body.outline;
                 const outlineColor = hexToFFmpegColor(req.body.outlineColor);
                 const shadow = req.body.shadow;
-
                 let speakerColors = {
                     'A': req.body.speaker1FontColor,
                     'B': req.body.speaker2FontColor
