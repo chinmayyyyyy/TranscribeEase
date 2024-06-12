@@ -45,7 +45,6 @@ body {
 .preview-text {
     position: absolute;
     bottom: 20px; /* Adjust as needed */
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
     color: white;
     padding: 10px;
     border-radius: 5px;
