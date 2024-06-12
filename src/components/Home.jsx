@@ -23,6 +23,7 @@ export default class Home extends Component {
         this.handleFileChange = this.handleFileChange.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleDualSpeakerUpload = this.handleDualSpeakerUpload.bind(this);
     }
 
     handleFileChange(event) {
@@ -39,19 +40,50 @@ export default class Home extends Component {
             alert('Please select a file first!');
             return;
         }
+        
+        if (this.state.dualSpeakerMode) {
+            this.handleDualSpeakerUpload();
+        } else {
+            const formData = new FormData();
+            formData.append('video', this.state.file);
+
+            fetch('http://localhost:5000/transcribe', {
+                method: 'POST',
+                body: formData,
+            })
+            .then((res) => res.text())
+            .then((data) => {
+                this.setState({ srtText: data }, () => {
+                    this.processVideoWithSubtitles();
+                });
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+        }
+    }
+
+    handleDualSpeakerUpload() {
+        console.log("Dual Speaker Mode");
+        const { file, fontFamily, fontSize, outline, outlineColor, shadow, speaker1FontColor, speaker2FontColor } = this.state;
 
         const formData = new FormData();
-        formData.append('video', this.state.file);
+        formData.append('video', file);
+        formData.append('fontFamily', fontFamily);
+        formData.append('fontSize', fontSize);
+        formData.append('outline', outline);
+        formData.append('outlineColor', outlineColor);
+        formData.append('shadow', shadow);
+        formData.append('speaker1FontColor', speaker1FontColor);
+        formData.append('speaker2FontColor', speaker2FontColor);
 
-        fetch('http://localhost:5000/transcribe', {
+        fetch('http://localhost:5000/process-video-dual-speaker', {
             method: 'POST',
             body: formData,
         })
-        .then((res) => res.text())
+        .then((res) => res.json())
         .then((data) => {
-            this.setState({ srtText: data }, () => {
-                this.processVideoWithSubtitles();
-            });
+            this.setState({ videoUrl: data.videoUrl });
         })
         .catch((err) => {
             console.log(err.message);
@@ -59,7 +91,7 @@ export default class Home extends Component {
     }
 
     processVideoWithSubtitles() {
-        const { srtText, file, fontFamily, fontSize, fontColor, outline, outlineColor, shadow, dualSpeakerMode, speaker1FontColor, speaker2FontColor } = this.state;
+        const { srtText, file, fontFamily, fontSize, fontColor, outline, outlineColor, shadow } = this.state;
 
         const formData = new FormData();
         formData.append('video', file);
@@ -70,9 +102,7 @@ export default class Home extends Component {
         formData.append('outline', outline);
         formData.append('outlineColor', outlineColor);
         formData.append('shadow', shadow);
-        formData.append('dualSpeakerMode', dualSpeakerMode); // Pass dual speaker mode option
-        formData.append('speaker1FontColor', speaker1FontColor); // Pass font color for speaker 1
-        formData.append('speaker2FontColor', speaker2FontColor); // Pass font color for speaker 2
+
 
         fetch('http://localhost:5000/process-video', {
             method: 'POST',
@@ -88,8 +118,8 @@ export default class Home extends Component {
     }
 
     render() {
-        const { fontFamily, fontSize, fontColor, outline, outlineColor, shadow, backgroundColor, orientation, dualSpeakerMode, speaker1FontColor, speaker2FontColor } = this.state;
-        
+        const { fontFamily, fontSize, fontColor, outline, outlineColor, shadow, backgroundColor, orientation, dualSpeakerMode, speaker1FontColor, speaker2FontColor, videoUrl } = this.state;
+
         const previewText = dualSpeakerMode
             ? `<span style="color:${speaker1FontColor}">Speaker 1: This is a preview of your subtitle text</span><br/>
                <span style="color:${speaker2FontColor}">Speaker 2: This is a preview of your subtitle text</span>`
@@ -104,9 +134,9 @@ export default class Home extends Component {
         };
 
         const fontFamilies = [
-            'Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'Verdana', 
-            'Georgia', 'Palatino', 'Garamond', 'Comic Sans MS', 'Trebuchet MS', 
-            'Arial Black', 'Impact', 'Tahoma', 'Lucida Sans Unicode', 
+            'Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'Verdana',
+            'Georgia', 'Palatino', 'Garamond', 'Comic Sans MS', 'Trebuchet MS',
+            'Arial Black', 'Impact', 'Tahoma', 'Lucida Sans Unicode',
         ];
 
         return (
@@ -179,10 +209,10 @@ export default class Home extends Component {
                         <div className="preview-text" dangerouslySetInnerHTML={{ __html: previewText }} />
                     </div>
                 </div>
-                {this.state.videoUrl && (
+                {videoUrl && (
                     <div>
                         <h2>Processed Video:</h2>
-                        <video controls src={this.state.videoUrl} />
+                        <video controls src={videoUrl} style={{ width: '100%' }} />
                     </div>
                 )}
             </div>

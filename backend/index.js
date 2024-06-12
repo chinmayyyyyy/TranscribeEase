@@ -189,11 +189,13 @@ app.post('/process-video-dual-speaker', upload.single('video'), async (req, res)
                     'Authorization': process.env.API_KEY
                 }
             });
+
             const statusResult = await statusResponse.json();
             if (statusResult.status === 'completed') {
                 console.log("Transcription Completed");
                 clearInterval(statusInterval);
 
+                console.log("Generating SRT for 2 Speakers");
                 const utterances = statusResult.utterances;
                 const fontFamily = req.body.fontFamily;
                 const fontSize = req.body.fontSize;
