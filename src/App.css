@@ -1,0 +1,49 @@
+/* App.css */
+
+.container {
+    width: 200vh;
+  }
+  
+  nav {
+    margin-left: 0px;
+    background-color: #f8f9fa;
+    padding: 0px;
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column; /* Make the links stack vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Full width to ensure links span the entire nav */
+  }
+  
+  nav ul li {
+    margin-bottom: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+    display: block;
+    padding: 10px;
+  }
+  
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+  .trim-video-container {
+    margin-top: 20px;
+  }
+  
+  .trim-video-container label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .trim-video-container video {
+    margin-top: 20px;
+  }

@@ -43,6 +43,7 @@ body {
 }
 
 .preview-text {
+    z-index: 5;
     position: absolute;
     bottom: 20px; /* Adjust as needed */
     color: white;

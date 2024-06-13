@@ -33,6 +33,8 @@ export default class Home extends Component {
 
   handleFileChange(event) {
     this.setState({ file: event.target.files[0] });
+    const previewVideoUrl = URL.createObjectURL(event.target.files[0]);
+    this.setState({ previewVideoUrl });
   }
 
   handleInputChange(event) {
@@ -124,7 +126,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { fontFamily, fontSize, fontColor, outline, outlineColor, shadow, backgroundColor, orientation, dualSpeakerMode, speaker1FontColor, speaker2FontColor, videoUrl, alignment } = this.state;
+    const {previewVideoUrl, fontFamily, fontSize, fontColor, outline, outlineColor, shadow, backgroundColor, orientation, dualSpeakerMode, speaker1FontColor, speaker2FontColor, videoUrl } = this.state;
 
     const previewStyle = {
       fontFamily,
@@ -143,7 +145,7 @@ export default class Home extends Component {
       position: 'relative',
       width: orientation === 'horizontal' ? '640px' : '360px',
       height: orientation === 'horizontal' ? '360px' : '640px',
-      margin: '20px auto',
+      margin: orientation === 'horizontal' ?'20px auto': '20px 40px'
     };
 
     const fontFamilies = [
@@ -179,6 +181,7 @@ export default class Home extends Component {
         </div>
         <div className='previewContent'>
         <Preview
+          previewVideoUrl={previewVideoUrl}
           previewStyle={previewStyle}
           videoStyle={videoStyle}
           dualSpeakerMode={dualSpeakerMode}

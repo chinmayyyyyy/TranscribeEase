@@ -247,6 +247,39 @@ app.post('/process-video-dual-speaker', upload.single('video'), async (req, res)
     }
 });
 
+
+// Trimming feature
+app.post('/trim-video', upload.single('video'), (req, res) => {
+    const { startTime, endTime } = req.body;
+    console.log(startTime , " and " , endTime);
+    const videoPath = req.file.path;
+    const outputDir = path.join(__dirname, 'videos');
+
+    // Ensure the output directory exists
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir);
+    }
+
+    const outputFilePath = path.join(outputDir, `output_trimmed_${Date.now()}.mp4`);
+
+    console.log("Trimming started");
+    const ffmpegCommand = `ffmpeg -i "${videoPath}" -ss ${startTime} -to ${endTime} -c copy "${outputFilePath}"`;
+
+    exec(ffmpegCommand, (error) => {
+        if (error) {
+            console.error('Error trimming video:', error);
+            res.status(500).send('Error trimming video.');
+            return;
+        }
+        res.json({ videoUrl: `http://localhost:5000/videos/${path.basename(outputFilePath)}` });
+        fs.unlink(videoPath, (unlinkErr) => {
+            if (unlinkErr) {
+                console.error('Error deleting original video:', unlinkErr);
+            }
+        });
+    });
+});
+
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
 });

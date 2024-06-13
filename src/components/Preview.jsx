@@ -1,11 +1,19 @@
 import React from 'react';
 import './home.css';
+import { Player } from 'video-react';
 
-
-const Preview = ({ previewStyle, videoStyle, dualSpeakerMode, speaker1FontColor, speaker2FontColor }) => (
+const Preview = ({ previewVideoUrl, previewStyle, videoStyle, dualSpeakerMode, speaker1FontColor, speaker2FontColor }) => (
   <div className='previewContent'>
     <h3>Preview:</h3>
     <div className="preview-box" style={videoStyle}>
+      {previewVideoUrl && (
+        <Player
+          src={previewVideoUrl}
+          fluid={false}
+          width={640}
+          height={360}
+        />
+      )}
       <div className="preview-text" style={previewStyle}>
         {dualSpeakerMode ? (
           <>
