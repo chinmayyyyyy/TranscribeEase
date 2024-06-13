@@ -280,6 +280,89 @@ app.post('/trim-video', upload.single('video'), (req, res) => {
     });
 });
 
+//Audio integration
+const handleFfmpegCommand = (ffmpegCommand, outputFilePath, res, videoPath, audioPath) => {
+    exec(ffmpegCommand, (error) => {
+        if (error) {
+            console.error('Error processing video:', error);
+            res.status(500).send('Error processing video.');
+            return;
+        }
+        res.json({ videoUrl: `http://localhost:5000/videos/${path.basename(outputFilePath)}` });
+
+        // Cleanup uploaded files
+        fs.unlink(videoPath, (unlinkErr) => {
+            if (unlinkErr) {
+                console.error('Error deleting original video:', unlinkErr);
+            }
+        });
+        if (audioPath) {
+            fs.unlink(audioPath, (unlinkErr) => {
+                if (unlinkErr) {
+                    console.error('Error deleting original audio:', unlinkErr);
+                }
+            });
+        }
+    });
+};
+
+app.post('/processMedia', upload.fields([{ name: 'video' }, { name: 'audio' }]), (req, res) => {
+    const videoPath = req.files.video ? req.files.video[0].path : null;
+    const audioPath = req.files.audio ? req.files.audio[0].path : null;
+    const { type, delay, volume, shortest } = req.body;
+
+    if (!videoPath) {
+        return res.status(400).send('Video file is required.');
+    }
+
+    const outputDir = path.join(__dirname, 'videos');
+    const outputFilePath = path.join(outputDir, `output_sound_${Date.now()}.mp4`);
+
+    let ffmpegCommand;
+
+    switch (type) {
+        case 'merge':
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -i "${audioPath}" -c:v copy -map 0:v -map 1:a -y "${outputFilePath}"`;
+            break;
+        case 'replace':
+            if (!audioPath) return res.status(400).send('Audio file is required for replacing.');
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -i "${audioPath}" -c:v copy -map 0:v -map 1:a -y "${outputFilePath}"`;
+            break;
+        case 'shorten':
+            if (!audioPath) return res.status(400).send('Audio file is required for shortening.');
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -i "${audioPath}" -c:v copy -map 0:v -map 1:a -shortest -y "${outputFilePath}"`;
+            break;
+        case 'combine':
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -i "${audioPath}" -c:v copy -filter_complex "[0:a][1:a] amix=inputs=2:duration=longest [audio_out]" -map 0:v -map "[audio_out]" -y "${outputFilePath}"`;
+            break;
+        case 'mixVolume':
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -i "${audioPath}" -filter_complex "[0:a] volume=${volume || 0.5} [music]; [music][1:a] amix=inputs=2:duration=longest [audio_out]" -map 0:v -map "[audio_out]" -y "${outputFilePath}"`;
+            break;
+        case 'mixDelay':
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -i "${audioPath}" -filter_complex "[1:a] adelay=${delay || 10000}|${delay || 10000} [voice]; [0:a][voice] amix=inputs=2:duration=longest [audio_out]" -map 0:v -map "[audio_out]" -y "${outputFilePath}"`;
+            break;
+        case 'amerge':
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -i "${audioPath}" -filter_complex "[0:a][1:a] amerge=inputs=2 [audio_out]" -map 0:v -map "[audio_out]" -y "${outputFilePath}"`;
+            break;
+        case 'silent':
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -f lavfi -i anullsrc -c:v copy -shortest -map 0:v -map 1:a -y "${outputFilePath}"`;
+            break;
+        case 'delayAudio':
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -i "${audioPath}" -filter_complex "[1:a] adelay=${delay || 10000}|${delay || 10000} [voice]; [0:a][voice] amix=inputs=2:duration=longest [audio_out]" -map 0:v -map "[audio_out]" -y "${outputFilePath}"`;
+            break;
+        case 'multipleTracks':
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -i "${audioPath}" -c:v copy -map 0 -map 1:a -y "${outputFilePath}"`;
+            break;
+        case 'loopAudio':
+            ffmpegCommand = `ffmpeg -i "${videoPath}" -stream_loop -1 -i "${audioPath}" -c:v copy -shortest -map 0:v -map 1:a -y "${outputFilePath}"`;
+            break;
+        default:
+            return res.status(400).send('Invalid processing type.');
+    }
+
+    handleFfmpegCommand(ffmpegCommand, outputFilePath, res, videoPath, audioPath);
+});
+
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
 });
