@@ -45,7 +45,7 @@ export default class AddSound extends Component {
         if (volume) formData.append('volume', volume);
         formData.append('shortest', shortest);
 
-        fetch('http://localhost:5000/processMedia', {
+        fetch('https://transcribeease.onrender.com/processMedia', {
             method: 'POST',
             body: formData
         })
