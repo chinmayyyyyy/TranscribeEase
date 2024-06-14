@@ -363,6 +363,6 @@ app.post('/processMedia', upload.fields([{ name: 'video' }, { name: 'audio' }]),
     handleFfmpegCommand(ffmpegCommand, outputFilePath, res, videoPath, audioPath);
 });
 
-app.listen(5000, () => {
+app.listen(process.env.port || 5000, () => {
     console.log('Server is running on port 5000');
 });
