@@ -54,7 +54,7 @@ export default class Home extends Component {
       const formData = new FormData();
       formData.append('video', this.state.file);
 
-      fetch('http://localhost:5000/transcribe', {
+      fetch('https://transcribeease.onrender.com/transcribe', {
         method: 'POST',
         body: formData,
       })
@@ -85,7 +85,7 @@ export default class Home extends Component {
     formData.append('speaker2FontColor', speaker2FontColor);
     formData.append('alignment', alignment);
 
-    fetch('http://localhost:5000/process-video-dual-speaker', {
+    fetch('https://transcribeease.onrender.com/process-video-dual-speaker', {
       method: 'POST',
       body: formData,
     })
@@ -112,7 +112,7 @@ export default class Home extends Component {
     formData.append('shadow', shadow);
     formData.append('alignment', alignment);
 
-    fetch('http://localhost:5000/process-video', {
+    fetch('https://transcribeease.onrender.com/process-video', {
       method: 'POST',
       body: formData,
     })

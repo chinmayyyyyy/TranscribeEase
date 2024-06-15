@@ -58,7 +58,7 @@ export default class TrimVideo extends Component {
     formData.append('startTime', startTime);
     formData.append('endTime', endTime);
 
-    fetch('http://localhost:5000/trim-video', {
+    fetch('https://transcribeease.onrender.com/trim-video', {
       method: 'POST',
       body: formData,
     })
