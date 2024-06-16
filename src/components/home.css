@@ -3,27 +3,35 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    height: 100vh;
 }
+h1,h2 ,h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: light;
+} 
 
 .container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px;
+    height: 100vh;
 }
 
 .configure,
 .previewContent {
     flex: 1;
     padding: 20px;
-    margin: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .configure {
+    background-color: white;
+    height: 93vh;
     max-width: 400px;
+    overflow-y: scroll;
 }
 
 .previewContent {
@@ -31,7 +39,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #1098F7;
+    height: 93vh;
 }
 
 .preview-box {
@@ -54,11 +63,15 @@ body {
     text-align: center;
     width: 100%; /* Adjust as needed */
 }
+.uploadButton{
+    width: 340px;
+}
 
 input[type="file"],
 select,
 input[type="number"],
 input[type="color"] {
+
     display: block;
     margin-bottom: 10px;
     width: 100%;
@@ -79,3 +92,70 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+.drop-box {
+  border: 2px dashed #cccccc;
+  padding: 20px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.drop-box.dragging {
+  background-color: #f0f0f0;
+}
+
+.font-settings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  .form-row {
+    margin-left: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .form-group label {
+    font-family: "Playwrite FR Moderne", cursive;
+    margin-bottom: 8px;
+  }
+  
+  .form-control {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .color-input {
+    padding: 0;
+    height: 40px;
+    border: none;
+  }
+  
+  @media (min-width: 600px) {
+    .form-group {
+      width: calc(50% - 8px);
+    }
+  }
+  
+  @media (min-width: 900px) {
+    .form-group {
+      width: calc(33.3333% - 8px);
+    }
+  }
+  
