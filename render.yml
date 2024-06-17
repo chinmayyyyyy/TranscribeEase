@@ -7,4 +7,4 @@ services:
     startCommand: node backend/index.js
     envVars:
       - key: API_KEY
-        value: a87c19559f2e4921ae12b4326e11bd9e
+        value: process.env.API_KEY
