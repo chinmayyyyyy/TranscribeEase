@@ -120,7 +120,7 @@ app.post('/process-video', upload.single('video'), async (req, res) => {
                 return;
             }
 
-            const videoUrl = `http://localhost:5000/videos/${path.basename(outputFilePath)}`;
+            const videoUrl = `https://transcribeease.onrender.com/videos/${path.basename(outputFilePath)}`;
             res.json({ videoUrl });
 
             fs.unlink(videoPath, () => {});
@@ -228,7 +228,7 @@ app.post('/process-video-dual-speaker', upload.single('video'), async (req, res)
                         return;
                     }
 
-                    const videoUrl = `http://localhost:5000/videos/${path.basename(outputFilePath)}`;
+                    const videoUrl = `https://transcribeease.onrender.com/videos/${path.basename(outputFilePath)}`;
                     res.json({ videoUrl });
 
                     fs.unlink(req.file.path, () => {});
@@ -271,7 +271,7 @@ app.post('/trim-video', upload.single('video'), (req, res) => {
             res.status(500).send('Error trimming video.');
             return;
         }
-        res.json({ videoUrl: `http://localhost:5000/videos/${path.basename(outputFilePath)}` });
+        res.json({ videoUrl: `https://transcribeease.onrender.com/videos/${path.basename(outputFilePath)}` });
         fs.unlink(videoPath, (unlinkErr) => {
             if (unlinkErr) {
                 console.error('Error deleting original video:', unlinkErr);
@@ -288,7 +288,7 @@ const handleFfmpegCommand = (ffmpegCommand, outputFilePath, res, videoPath, audi
             res.status(500).send('Error processing video.');
             return;
         }
-        res.json({ videoUrl: `http://localhost:5000/videos/${path.basename(outputFilePath)}` });
+        res.json({ videoUrl: `https://transcribeease.onrender.com/videos/${path.basename(outputFilePath)}` });
 
         // Cleanup uploaded files
         fs.unlink(videoPath, (unlinkErr) => {
