@@ -53,7 +53,7 @@ export default class AddSound extends Component {
         if (volume) formData.append('volume', volume);
         formData.append('shortest', shortest);
 
-        fetch('http://localhost:5000/processMedia', {
+        fetch('https://transcribeease.onrender.com/processMedia', {
             method: 'POST',
             body: formData
         })
@@ -139,8 +139,6 @@ export default class AddSound extends Component {
                         <button onClick={this.handleAddSound}>Add Sound</button>
                     </div>
                 </div>
-
-
                     <div className="previewContent">
                         {previewVideo && (
                             <div className="preview-video">
@@ -160,13 +158,15 @@ export default class AddSound extends Component {
                                 <audio controls src={previewAudio} />
                             </div>
                         )}
-                </div>
-
                 {videoUrl && (
                     <div className="processed-video">
                         <video controls src={videoUrl} style={{ width: '100%' }}></video>
                     </div>
                 )}
+
+                </div>
+
+                
 
             </div>
         );

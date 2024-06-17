@@ -2,7 +2,7 @@ import React from 'react';
 import './home.css';
 import { Player } from 'video-react';
 
-const Preview = ({ settings, onInputChange, previewVideoUrl, previewStyle, videoStyle, dualSpeakerMode, speaker1FontColor, speaker2FontColor }) => (
+const Preview = ({videoUrl, settings, onInputChange, previewVideoUrl, previewStyle, videoStyle, dualSpeakerMode, speaker1FontColor, speaker2FontColor }) => (
   <div>
     <h3 style={{textAlign : 'center'}}>Preview:</h3>
     <div className="preview-box" style={videoStyle}>
@@ -38,6 +38,12 @@ const Preview = ({ settings, onInputChange, previewVideoUrl, previewStyle, video
         </select>
       </div>
     </div>
+    {videoUrl && (
+          <div>
+            <h2>Processed Video:</h2>
+            <video controls src={videoUrl} style={{ width: '100%' }} />
+          </div>
+        )}
   </div>
 );
 

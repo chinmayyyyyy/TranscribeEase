@@ -15,12 +15,20 @@ body, html, #root {
 
 nav {
   background-color: #48CAE4;
-  width: 100px;
+  width: 80px;
   height: 100vh;
-  padding: 0px;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
+}
+nav img {
+  width: 60%;
+  margin-left: 15px;
+}
+nav p {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+
 }
 
 nav ul {
@@ -29,7 +37,7 @@ nav ul {
 }
 
 nav ul li {
-  margin: 70px 0 ;
+  margin: 50px 0 ;
 }
 
 nav ul li a {
@@ -38,10 +46,11 @@ nav ul li a {
   padding: 10px;
   display: block;
   border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 nav ul li a:hover {
-  background-color: #ffffff;
+  color: #ffffff;
 }
 
 .main-content {
