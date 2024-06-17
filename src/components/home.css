@@ -64,6 +64,8 @@ h1,h2 ,h3 {
     width: 100%; /* Adjust as needed */
 }
 .uploadButton{
+    background-color: #007BFF;
+    color: black ;
     width: 340px;
 }
 
@@ -78,7 +80,6 @@ input[type="color"] {
     padding: 10px;
     font-size: 16px;
 }
-
 button {
     padding: 10px 20px;
     font-size: 16px;

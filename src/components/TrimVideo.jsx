@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Range } from 'react-range';
 import { Player, ControlBar } from 'video-react';
 import 'video-react/dist/video-react.css'; // import css
-
+import './TrimVideo.css'
 export default class TrimVideo extends Component {
   constructor(props) {
     super(props);
@@ -72,73 +72,76 @@ export default class TrimVideo extends Component {
   }
 
   render() {
-    const { videoUrl, trimmedVideoUrl, duration, startTime, endTime, currentTime } = this.state;
-
+    const { videoUrl, trimmedVideoUrl, duration, startTime, endTime } = this.state;
+  
     return (
       <div className="trim-video-container">
         <h2>Trim Video</h2>
         <input type="file" accept="video/*" onChange={this.handleFileChange} />
-        {videoUrl && (
-          <div>
-            <Player
-              src={videoUrl}
-              fluid={false}
-              width={640}
-              height={360}
-              onLoadedMetadata={this.handleVideoLoad}
-              onTimeUpdate={this.handleTimeUpdate}
-              ref={(player) => { this.player = player; }}
-            >
-              <ControlBar autoHide={false} />
-            </Player>
-            <div style={{ margin: '20px 0' }}>
-              <Range
-                step={0.1}
-                min={0}
-                max={duration}
-                values={[startTime, endTime]}
-                onChange={this.handleSliderChange}
-                renderTrack={({ props, children }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '6px',
-                      width: '100%',
-                      backgroundColor: '#ccc',
-                    }}
-                  >
-                    {children}
-                  </div>
-                )}
-                renderThumb={({ index, props }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '16px',
-                      width: '16px',
-                      backgroundColor: index === 0 ? '#00f' : '#f00',
-                    }}
-                  />
-                )}
-              />
-              <div>
-                <span>Start Time: {startTime.toFixed(2)}</span>
-                <span style={{ float: 'right' }}>End Time: {endTime.toFixed(2)}</span>
+        <div className="video-wrapper">
+          {videoUrl && (
+            <div className="editVideo">
+              <Player
+                src={videoUrl}
+                fluid={false}
+                width={320}
+                height={180}
+                onLoadedMetadata={this.handleVideoLoad}
+                onTimeUpdate={this.handleTimeUpdate}
+                ref={(player) => { this.player = player; }}
+              >
+                <ControlBar autoHide={false} />
+              </Player>
+              <div style={{ margin: '20px 0' }}>
+                <Range
+                  step={0.1}
+                  min={0}
+                  max={duration}
+                  values={[startTime, endTime]}
+                  onChange={this.handleSliderChange}
+                  renderTrack={({ props, children }) => (
+                    <div
+                      {...props}
+                      style={{
+                        ...props.style,
+                        height: '6px',
+                        width: '100%',
+                        backgroundColor: '#ccc',
+                      }}
+                    >
+                      {children}
+                    </div>
+                  )}
+                  renderThumb={({ index, props }) => (
+                    <div
+                      {...props}
+                      style={{
+                        ...props.style,
+                        height: '16px',
+                        width: '16px',
+                        backgroundColor: index === 0 ? '#00f' : '#f00',
+                      }}
+                    />
+                  )}
+                />
+                <div>
+                  <span>Start Time: {startTime.toFixed(2)}</span>
+                  <span style={{ float: 'right' }}>End Time: {endTime.toFixed(2)}</span>
+                </div>
               </div>
+              <button onClick={this.handleTrimVideo}>Trim Video</button>
             </div>
-            <button onClick={this.handleTrimVideo}>Trim Video</button>
-          </div>
-        )}
-
-        {trimmedVideoUrl && (
-          <div className='previewVideo'>
-            <h3>Trimmed Video:</h3>
-            <video controls src={trimmedVideoUrl} style={{ width: '100%' }} />
-          </div>
-        )}
+          )}
+  
+          {trimmedVideoUrl && (
+            <div className="previewVideo">
+              <h3>Trimmed Video:</h3>
+              <video controls src={trimmedVideoUrl} style={{ width: '320px', height: '180px' }} />
+            </div>
+          )}
+        </div>
       </div>
     );
   }
+  
 }

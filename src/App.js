@@ -12,13 +12,28 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+                <Link to="/">
+                    <div>
+                    <img width={'50%'} src={require('./Assets/video-call.png')} alt=""/>
+                      <p>Home</p>
+                    </div>
+                </Link>
             </li>
             <li>
-              <Link to="/trim-video">Trim Video</Link>
+              <Link to="/trim-video">
+              <div>
+                    <img width={'50%'} src={require('./Assets/video-editing.png')} alt=""/>
+                      <p>Trim Video</p>
+              </div>
+              </Link>
             </li>
             <li>
-              <Link to="/add-sound">Insert Audio</Link>
+              <Link to="/add-sound">
+              <div>
+                    <img width={'50%'} src={require('./Assets/movie-player.png')} alt=""/>
+                      <p>Add Sound</p>
+              </div>
+              </Link>
             </li>
           </ul>
         </nav>
