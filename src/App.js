@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './components/Home';
 import TrimVideo from './components/TrimVideo';
 import AddSound from './components/AddSound';
-import './App.css'; 
+import './App.css';
 
 function App() {
   return (
@@ -12,22 +12,38 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+                <Link to="/">
+                    <div>
+                    <img width={'50%'} src={require('./Assets/video-call.png')} alt=""/>
+                      <p>Home</p>
+                    </div>
+                </Link>
             </li>
             <li>
-              <Link to="/trim-video">Trim Video</Link>
+              <Link to="/trim-video">
+              <div>
+                    <img width={'50%'} src={require('./Assets/video-editing.png')} alt=""/>
+                      <p>Trim Video</p>
+              </div>
+              </Link>
             </li>
             <li>
-                <Link to= "/add-sound">Insert Audio</Link>
+              <Link to="/add-sound">
+              <div>
+                    <img width={'50%'} src={require('./Assets/movie-player.png')} alt=""/>
+                      <p>Add Sound</p>
+              </div>
+              </Link>
             </li>
           </ul>
         </nav>
-
-        <Routes>
-          <Route path="/trim-video" element={<TrimVideo />} />
-          <Route path="/add-sound" element={<AddSound />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <div className="main-content">
+          <Routes>
+            <Route path="/trim-video" element={<TrimVideo />} />
+            <Route path="/add-sound" element={<AddSound />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

@@ -314,7 +314,9 @@ app.post('/processMedia', upload.fields([{ name: 'video' }, { name: 'audio' }]),
     if (!videoPath) {
         return res.status(400).send('Video file is required.');
     }
-
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir);
+    }
     const outputDir = path.join(__dirname, 'videos');
     const outputFilePath = path.join(outputDir, `output_sound_${Date.now()}.mp4`);
 
