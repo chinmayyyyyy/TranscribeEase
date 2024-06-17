@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -20,6 +20,7 @@ h1,h2 ,h3 {
 
 .configure,
 .previewContent {
+    overflow-y: scroll;
     flex: 1;
     padding: 20px;
     border: 1px solid #ddd;
@@ -45,8 +46,8 @@ h1,h2 ,h3 {
 
 .preview-box {
     background-color: black;
-    position: relative;
     display: flex;
+    margin-top: 300px;
     justify-content: center;
     align-items: center;
 }
@@ -73,7 +74,7 @@ input[type="file"],
 select,
 input[type="number"],
 input[type="color"] {
-
+  font-family: "Montserrat", sans-serif;
     display: block;
     margin-bottom: 10px;
     width: 100%;
@@ -130,7 +131,8 @@ button:hover {
   }
 
   .form-group label {
-    font-family: "Playwrite FR Moderne", cursive;
+    font-family: "Montserrat", sans-serif;
+
     margin-bottom: 8px;
   }
   

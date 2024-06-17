@@ -181,6 +181,7 @@ export default class Home extends Component {
         </div>
         <div className='previewContent'>
         <Preview
+        videoUrl={videoUrl}
          settings={this.state}
           onInputChange={this.handleInputChange}
           previewVideoUrl={previewVideoUrl}
@@ -191,12 +192,6 @@ export default class Home extends Component {
           speaker2FontColor={speaker2FontColor}
         />
         </div>
-        {videoUrl && (
-          <div>
-            <h2>Processed Video:</h2>
-            <video controls src={videoUrl} style={{ width: '100%' }} />
-          </div>
-        )}
       </div>
     );
   }

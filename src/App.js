@@ -14,7 +14,7 @@ function App() {
             <li>
                 <Link to="/">
                     <div>
-                    <img width={'50%'} src={require('./Assets/video-call.png')} alt=""/>
+                    <img src={require('./Assets/video-call.png')} alt=""/>
                       <p>Home</p>
                     </div>
                 </Link>
@@ -22,7 +22,7 @@ function App() {
             <li>
               <Link to="/trim-video">
               <div>
-                    <img width={'50%'} src={require('./Assets/video-editing.png')} alt=""/>
+                    <img src={require('./Assets/video-editing.png')} alt=""/>
                       <p>Trim Video</p>
               </div>
               </Link>
@@ -30,7 +30,7 @@ function App() {
             <li>
               <Link to="/add-sound">
               <div>
-                    <img width={'50%'} src={require('./Assets/movie-player.png')} alt=""/>
+                    <img src={require('./Assets/movie-player.png')} alt=""/>
                       <p>Add Sound</p>
               </div>
               </Link>
