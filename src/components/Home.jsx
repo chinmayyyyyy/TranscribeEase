@@ -14,11 +14,11 @@ export default class Home extends Component {
       videoUrl: '',
       fontFamily: 'Arial',
       fontSize: '24',
-      fontColor: '#1098F7',
+      fontColor: '#FFFFFF',
       outline: '1',
       outlineColor: '#000000',
       shadow: '1',
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#000000',
       orientation: 'horizontal',
       dualSpeakerMode: false,
       speaker1FontColor: '#FF0000',
@@ -143,8 +143,8 @@ export default class Home extends Component {
     const videoStyle = {
       backgroundColor,
       position: 'relative',
-      width: orientation === 'horizontal' ? '640px' : '240px',
-      height: orientation === 'horizontal' ? '360px' : '400px',
+      width: orientation === 'horizontal' ? '640px' : '360px',
+      height: orientation === 'horizontal' ? '360px' : '640px',
       margin: orientation === 'horizontal' ?'20px auto': '20px 40px'
     };
 
@@ -177,12 +177,10 @@ export default class Home extends Component {
             onInputChange={this.handleInputChange}
           />
         )}
-        <button className='uploadButton' onClick={this.handleFileUpload}>Upload</button>
+        <button onClick={this.handleFileUpload}>Upload</button>
         </div>
         <div className='previewContent'>
         <Preview
-         settings={this.state}
-          onInputChange={this.handleInputChange}
           previewVideoUrl={previewVideoUrl}
           previewStyle={previewStyle}
           videoStyle={videoStyle}
