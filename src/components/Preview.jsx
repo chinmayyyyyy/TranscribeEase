@@ -1,8 +1,8 @@
 import React from 'react';
 import './home.css';
 import { Player } from 'video-react';
-
-const Preview = ({videoUrl, settings, onInputChange, previewVideoUrl, previewStyle, videoStyle, dualSpeakerMode, speaker1FontColor, speaker2FontColor }) => (
+import Loader from "./loader";
+const Preview = ({clicked ,videoUrl, settings, onInputChange, previewVideoUrl, previewStyle, videoStyle, dualSpeakerMode, speaker1FontColor, speaker2FontColor }) => (
   <div>
     <h3 style={{textAlign : 'center'}}>Preview:</h3>
     <div className="preview-box" style={videoStyle}>
@@ -38,11 +38,13 @@ const Preview = ({videoUrl, settings, onInputChange, previewVideoUrl, previewSty
         </select>
       </div>
     </div>
-    {videoUrl && (
+    {clicked && (
+      videoUrl ? (
           <div>
             <h2>Processed Video:</h2>
             <video controls src={videoUrl} style={{ width: '100%' }} />
           </div>
+        ):<Loader />
         )}
   </div>
 );

@@ -51,3 +51,30 @@ button {
 button:hover {
   background-color: rgb(206, 230, 252);
 }
+
+@media (max-width: 480px) {
+  .trim-video-container {
+    width: 90%; /* Adjust width for mobile devices */
+    padding: 10px;
+  }
+
+  .video-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .editVideo, .previewVideo {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .previewVideo {
+    bottom: 0; /* Adjust position for mobile devices */
+  }
+
+  button {
+    width: 100%; /* Make buttons full width on mobile */
+    padding: 10px;
+    font-size: 14px; /* Adjust font size for mobile */
+  }
+}

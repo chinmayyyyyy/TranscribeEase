@@ -66,3 +66,67 @@ nav ul li a:hover {
   margin-top: 20px;
   width: 100%;
 }
+
+/* Media Queries for Responsive Design */
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  nav {
+    width: -webkit-fill-available;
+    height: auto;
+    flex-direction: row;
+    box-shadow: none;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    height: auto; /* Make the nav bar adjust height automatically */
+    padding: 10px 0; /* Add padding to nav bar */
+    width: max-content;
+  }
+
+  nav ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li a {
+    font-size: 12px; /* Smaller font size for nav items */
+    padding: 5px; /* Smaller padding for nav items */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav img {
+    width: 30px; /* Smaller icons */
+    margin: 0 auto;
+  }
+
+  nav p {
+    font-size: 10px; /* Smaller text under icons */
+    margin: 0; /* Remove default margin */
+  }
+
+  nav ul li {
+    text-align: center  ;
+    margin: 5px;
+    margin-left: 35px; 
+    margin-right: 35px;  }
+}
+
