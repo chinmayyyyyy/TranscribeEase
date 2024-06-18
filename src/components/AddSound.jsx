@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Player, ControlBar } from 'video-react';
 import './AddSound.css'; 
+import Loader from "./loader";
 
 export default class AddSound extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ export default class AddSound extends Component {
             volume: '',
             shortest: false,
             previewVideo: '',
-            previewAudio: ''
+            previewAudio: '',
+            clicked : false,
         };
     }
 
@@ -45,6 +47,7 @@ export default class AddSound extends Component {
 
     handleAddSound = () => {
         const { video, audio, type, delay, volume, shortest } = this.state;
+        this.setState({ clicked : true });  
         const formData = new FormData();
         formData.append('video', video);
         if (audio) formData.append('audio', audio);
@@ -62,12 +65,12 @@ export default class AddSound extends Component {
                 this.setState({ videoUrl: data.videoUrl });
             })
             .catch(error => {
-                console.error(error);
+                alert('Error processing video with subtitles! Please try again.')
             });
     }
 
     render() {
-        const { previewVideo, previewAudio, videoUrl, type, delay, volume, shortest } = this.state;
+        const {clicked, previewVideo, previewAudio, videoUrl, type, delay, volume, shortest } = this.state;
 
         return (
             <div className="container">
@@ -136,7 +139,9 @@ export default class AddSound extends Component {
                             </div>
                         )}
 
-                        <button onClick={this.handleAddSound}>Add Sound</button>
+                        <button
+         className={`upload-form-button ${clicked ? 'clicked' : ''}`}
+                        onClick={this.handleAddSound} disabled={clicked}>Add Sound</button>
                     </div>
                 </div>
                     <div className="previewContent">
@@ -158,11 +163,13 @@ export default class AddSound extends Component {
                                 <audio controls src={previewAudio} />
                             </div>
                         )}
-                {videoUrl && (
+                {clicked && (
+                videoUrl ? (
                     <div className="processed-video">
                         <video controls src={videoUrl} style={{ width: '100%' }}></video>
                     </div>
-                )}
+                ): <Loader/>
+            )}
 
                 </div>
 

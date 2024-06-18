@@ -3,10 +3,13 @@ import { Range } from 'react-range';
 import { Player, ControlBar } from 'video-react';
 import 'video-react/dist/video-react.css'; // import css
 import './TrimVideo.css'
+import Loader from "./loader";
+
 export default class TrimVideo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      clicked : false,
       file: null,
       videoUrl: '',
       trimmedVideoUrl: '',
@@ -52,7 +55,7 @@ export default class TrimVideo extends Component {
 
   handleTrimVideo() {
     const { file, startTime, endTime } = this.state;
-
+    this.setState({clicked : true});
     const formData = new FormData();
     formData.append('video', file);
     formData.append('startTime', startTime);
@@ -67,12 +70,13 @@ export default class TrimVideo extends Component {
         this.setState({ trimmedVideoUrl: data.videoUrl });
       })
       .catch((err) => {
-        console.log(err.message);
+        alert('Error processing video with subtitles! Please try again.');
+
       });
   }
 
   render() {
-    const { videoUrl, trimmedVideoUrl, duration, startTime, endTime } = this.state;
+    const {clicked, videoUrl, trimmedVideoUrl, duration, startTime, endTime } = this.state;
   
     return (
       <div className="trim-video-container">
@@ -129,19 +133,21 @@ export default class TrimVideo extends Component {
                   <span style={{ float: 'right' }}>End Time: {endTime.toFixed(2)}</span>
                 </div>
               </div>
-              <button onClick={this.handleTrimVideo}>Trim Video</button>
+              <button
+              style={clicked ? {display: 'none'} : {display: 'block'}}
+              onClick={this.handleTrimVideo}>Trim Video</button>
             </div>
           )}
-  
-          {trimmedVideoUrl && (
+          {clicked && (
+          trimmedVideoUrl ? (
             <div className="previewVideo">
               <h3>Trimmed Video:</h3>
               <video controls src={trimmedVideoUrl} style={{ width: '320px', height: '180px' }} />
             </div>
-          )}
+          ): <Loader/>
+        )}
         </div>
       </div>
     );
-  }
-  
+  }  
 }

@@ -23,7 +23,8 @@ export default class Home extends Component {
       dualSpeakerMode: false,
       speaker1FontColor: '#FF0000',
       speaker2FontColor: '#0000FF',
-      alignment: '2' // Default alignment (Bottom Center)
+      alignment: '2' ,
+      clicked: false,
     };
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -47,6 +48,7 @@ export default class Home extends Component {
       alert('Please select a file first!');
       return;
     }
+    this.setState({ clicked: true });
 
     if (this.state.dualSpeakerMode) {
       this.handleDualSpeakerUpload();
@@ -94,7 +96,7 @@ export default class Home extends Component {
         this.setState({ videoUrl: data.videoUrl });
       })
       .catch((err) => {
-        console.log(err.message);
+          alert('Error processing video with subtitles! Please try again.');
       });
   }
 
@@ -121,12 +123,12 @@ export default class Home extends Component {
         this.setState({ videoUrl: data.videoUrl });
       })
       .catch((err) => {
-        console.log(err.message);
+        alert('Error processing video with subtitles! Please try again.');
       });
   }
 
   render() {
-    const {previewVideoUrl, fontFamily, fontSize, fontColor, outline, outlineColor, shadow, backgroundColor, orientation, dualSpeakerMode, speaker1FontColor, speaker2FontColor, videoUrl } = this.state;
+    const {clicked, previewVideoUrl, fontFamily, fontSize, fontColor, outline, outlineColor, shadow, backgroundColor, orientation, dualSpeakerMode, speaker1FontColor, speaker2FontColor, videoUrl } = this.state;
 
     const previewStyle = {
       fontFamily,
@@ -139,7 +141,7 @@ export default class Home extends Component {
       width: '100%',
       textAlign: 'center',
     };
-
+    
     const videoStyle = {
       backgroundColor,
       position: 'relative',
@@ -177,10 +179,15 @@ export default class Home extends Component {
             onInputChange={this.handleInputChange}
           />
         )}
-        <button className='uploadButton' onClick={this.handleFileUpload}>Upload</button>
+        <button 
+         className={`uploadButton ${clicked ? 'clicked' : ''}`}
+         onClick={this.handleFileUpload} 
+         disabled={clicked}>Upload</button>
         </div>
+
         <div className='previewContent'>
         <Preview
+        clicked={clicked}
         videoUrl={videoUrl}
          settings={this.state}
           onInputChange={this.handleInputChange}
@@ -196,3 +203,4 @@ export default class Home extends Component {
     );
   }
 }
+
