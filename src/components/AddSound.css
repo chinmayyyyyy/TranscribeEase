@@ -66,4 +66,31 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  
+  .previewMessage{
+      background-color: white;
+      text-align: center;
+      margin: 20px;
+  }
+  @media (max-width: 480px) {
+    .previewContent{
+      width: -webkit-fill-available;
+    }
+    .preview-video{
+      width: 100% !important;
+    }
+    .upload-form{
+      padding: 5px;
+      margin: 10px;
+    }
+    .upload-form input[type="file"],
+    .upload-form select,
+    .upload-form input[type="number"] {
+      width: 50% ;
+    }
+    .upload-form-button {
+      width: 50%;
+    }
+    .preview-audio audio{
+      margin-left: 5px;
+    }
+  }

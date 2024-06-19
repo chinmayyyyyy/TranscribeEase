@@ -63,6 +63,9 @@ h1,h2 ,h3 {
   text-align: center;
   width: 100%; /* Adjust as needed */
 }
+.processed-video{
+  width: 100%;
+}
 .uploadButton{
   background-color: #007BFF;
   color: black ;
@@ -175,5 +178,13 @@ button:hover {
   }
   .font-settings{
     gap: 4px;
+  }
+  .processed-video{
+    margin: 30px;
+    width: 300px;
+  }
+  .processed-video-container{
+    margin: 10px;
+    text-align: center;
   }
 }

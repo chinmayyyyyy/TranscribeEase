@@ -146,7 +146,7 @@ export default class AddSound extends Component {
                 </div>
                     <div className="previewContent">
                         {previewVideo && (
-                            <div className="preview-video">
+                            <div className="preview-box">
                                 <Player
                                     src={previewVideo}
                                     fluid={false}
@@ -158,15 +158,21 @@ export default class AddSound extends Component {
                             </div>
                         )}
 
-                        {previewAudio && (
+                        {previewAudio ?(
                             <div className="preview-audio">
                                 <audio controls src={previewAudio} />
                             </div>
-                        )}
+                        ) :(
+                            <div className='previewMessage'>
+                                <h3>Preview:</h3>
+                                <p>Upload a video and audio file to see a preview here.</p>
+                            </div>
+                        )
+                        }
                 {clicked && (
                 videoUrl ? (
                     <div className="processed-video">
-                        <video controls src={videoUrl} style={{ width: '100%' }}></video>
+                        <video controls src={videoUrl} ></video>
                     </div>
                 ): <Loader/>
             )}

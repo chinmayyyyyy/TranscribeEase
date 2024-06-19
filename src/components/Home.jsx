@@ -23,7 +23,6 @@ export default class Home extends Component {
       dualSpeakerMode: false,
       speaker1FontColor: '#FF0000',
       speaker2FontColor: '#0000FF',
-      alignment: '2' ,
       clicked: false,
     };
     this.handleFileChange = this.handleFileChange.bind(this);

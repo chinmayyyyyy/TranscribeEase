@@ -40,9 +40,9 @@ const Preview = ({clicked ,videoUrl, settings, onInputChange, previewVideoUrl, p
     </div>
     {clicked && (
       videoUrl ? (
-          <div>
+          <div className='processed-video-container'>
             <h2>Processed Video:</h2>
-            <video controls src={videoUrl} style={{ width: '100%' }} />
+            <video className='processed-video' controls src={videoUrl} />
           </div>
         ):<Loader />
         )}
