@@ -15,7 +15,7 @@ function App() {
                 <Link to="/">
                     <div>
                     <img src={require('./Assets/video-call.png')} alt=""/>
-                      <p>Home</p>
+                      <p>Transcribe</p>
                     </div>
                 </Link>
             </li>
