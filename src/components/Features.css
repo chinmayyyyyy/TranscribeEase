@@ -1,0 +1,97 @@
+/* Styles for the main section */
+.section-container-features {
+    padding-top: 0rem; /* Adjust according to your design */
+    background-color: #ffffff; /* White background */
+    padding: 70px;
+  font-family: "Montserrat", sans-serif;
+
+}
+
+/* Container styles */
+.container-features {
+    padding-left: 1rem; /* Adjust padding */
+    padding-right: 1rem; /* Adjust padding */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80rem; /* Adjust max-width */
+}
+
+/* Text centering */
+.text-center {
+    text-align: center;
+}
+
+/* Heading styles */
+.heading-features {
+    font-size: 2rem; /* Adjust font size */
+    font-weight: bold;
+    line-height: 1.5;
+    color: #333333; /* Dark gray text */
+    margin-top: 1.5rem; /* Adjust margin */
+}
+
+/* Subtitle styles */
+.subtitle {
+    margin-top: 1rem; /* Adjust margin */
+    font-size: 1rem; /* Adjust font size */
+    line-height: 1.5;
+    color: #666666; /* Medium gray text */
+}
+
+/* Grid layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
+    gap: 2rem; /* Adjust gap between items */
+    margin-top: 2rem; /* Adjust margin */
+}
+
+/* Responsive grid layout */
+@media (min-width: 640px) {
+    .grid-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns on small screens */
+    }
+}
+
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns on medium screens */
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-container {
+        gap: 3rem; /* Increased gap on larger screens */
+    }
+}
+
+/* Card styles */
+.card {
+    padding: 1.5rem; /* Adjust padding */
+    border: 1px solid #e5e7eb; /* Light gray border */
+    background-color: #ffffff; /* White background */
+    text-align: center;
+}
+
+/* SVG icon styles */
+.svg-icon {
+    width: 4.5rem; /* Adjust icon size */
+    height: 4.5rem; /* Adjust icon size */
+    margin-bottom: 1rem; /* Adjust margin */
+}
+
+/* Card title styles */
+.card-title {
+    margin-top: 1.5rem; /* Adjust margin */
+    font-size: 1.25rem; /* Adjust font size */
+    font-weight: bold;
+    color: #333333; /* Dark gray text */
+}
+
+/* Card description styles */
+.card-description {
+    margin-top: 1rem; /* Adjust margin */
+    font-size: 1rem; /* Adjust font size */
+    line-height: 1.5;
+    color: #666666; /* Medium gray text */
+}

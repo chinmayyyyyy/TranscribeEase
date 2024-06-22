@@ -1,0 +1,186 @@
+/* Styles for the main section */
+.steps-section {
+    padding-top: 2.5rem; /* 10 */
+    padding-bottom: 2.5rem; /* 10 */
+    background: linear-gradient(to bottom, #f0fdf4, #dcfce7);
+    /* White background */
+  font-family: "Montserrat", sans-serif;
+
+}
+
+@media (min-width: 640px) {
+    .steps-section {
+        padding-top: 4rem; /* 16 */
+        padding-bottom: 4rem; /* 16 */
+    }
+}
+
+@media (min-width: 1024px) {
+    .steps-section {
+        padding-top: 6rem; /* 24 */
+        padding-bottom: 6rem; /* 24 */
+    }
+}
+
+/* Container styles */
+.steps-container {
+    padding-left: 1rem; /* 4 */
+    padding-right: 1rem; /* 4 */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80rem; /* 7xl */
+}
+
+@media (min-width: 640px) {
+    .steps-container {
+        padding-left: 1.5rem; /* 6 */
+        padding-right: 1.5rem; /* 6 */
+    }
+}
+
+@media (min-width: 1024px) {
+    .steps-container {
+        padding-left: 2rem; /* 8 */
+        padding-right: 2rem; /* 8 */
+    }
+}
+
+/* Text centering */
+.steps-text-center {
+    max-width: 32rem; /* 2xl */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Heading styles */
+.steps-heading {
+    font-size: 1.875rem; /* 3xl */
+    font-weight: bold;
+    line-height: 1.5;
+    color: #000000; /* Black text */
+}
+
+@media (min-width: 640px) {
+    .steps-heading {
+        font-size: 2.25rem; /* 4xl */
+    }
+}
+
+@media (min-width: 1024px) {
+    .steps-heading {
+        font-size: 3rem; /* 5xl */
+    }
+}
+
+/* Subtitle styles */
+.steps-subtitle {
+    max-width: 28rem; /* lg */
+    margin-top: 1rem; /* 4 */
+    font-size: 1rem; /* base */
+    line-height: 1.75;
+    color: #4B5563; /* Gray-600 text */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid layout */
+.steps-grid {
+    position: relative;
+    margin-top: 3rem; /* 12 */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem; /* 12 */
+}
+
+@media (min-width: 768px) {
+    .steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem; /* 12 */
+    }
+}
+
+@media (min-width: 1024px) {
+    .steps-grid {
+        margin-top: 5rem; /* 20 */
+    }
+}
+
+/* Curved line styles */
+.steps-curved-line {
+    position: absolute;
+    inset-x: 0;
+    display: none;
+    top: 0.5rem; /* 2 */
+}
+
+@media (min-width: 768px) {
+    .steps-curved-line {
+        display: block;
+        padding-left: 5rem; /* 20 */
+        padding-right: 5rem; /* 20 */
+    }
+}
+
+@media (min-width: 1024px) {
+    .steps-curved-line {
+        padding-left: 7rem; /* 28 */
+        padding-right: 7rem; /* 28 */
+    }
+}
+
+@media (min-width: 1280px) {
+    .steps-curved-line {
+        padding-left: 11rem; /* 44 */
+        padding-right: 11rem; /* 44 */
+    }
+}
+
+/* Step item styles */
+.step-item {
+    text-align: center;
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem; /* 16 */
+    height: 4rem; /* 16 */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff; /* White background */
+    border: 2px solid #E5E7EB; /* Gray-200 border */
+    border-radius: 9999px; /* Full round */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Shadow */
+    font-size: 1.25rem; /* xl */
+    font-weight: 600;
+    color: #374151; /* Gray-700 text */
+}
+
+@media (min-width: 768px) {
+    .step-number {
+        width: 5rem; /* 20 */
+        height: 5rem; /* 20 */
+    }
+}
+
+.step-title {
+    margin-top: 1.5rem; /* 6 */
+    font-size: 1.25rem; /* xl */
+    font-weight: 600;
+    color: #000000; /* Black text */
+}
+
+@media (min-width: 768px) {
+    .step-title {
+        margin-top: 2.5rem; /* 10 */
+    }
+}
+
+.step-description {
+    margin-top: 1rem; /* 4 */
+    font-size: 1rem; /* base */
+    line-height: 1.75;
+    color: #4B5563; /* Gray-600 text */
+}
